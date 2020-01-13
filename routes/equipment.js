@@ -30,13 +30,22 @@ router.post('/new', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  Equipment.find({ ID: req.params.ID }, (err, doc) => {
+  Equipment.findOne({ ID: req.params.ID }, (err, doc) => {
     if (err) {
-      return res.status(404).json(err);
+      return res.status(500).json(err);
     }
+
+    if (!doc) return res.status(404).json({ message: 'No results found.' });
 
     return res.status(200).json(doc);
   });
 });
+
+
+// router.post('/:id/update', (req, res) => {
+//   Equipment.findOneAndUpdate({ ID: req.params.ID }, (req, res) => {
+
+//   });
+//   bhk});
 
 module.exports = router;
