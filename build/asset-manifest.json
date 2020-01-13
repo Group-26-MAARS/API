@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a1dfdd8f.chunk.css",
+    "main.js": "/static/js/main.77838189.chunk.js",
+    "main.js.map": "/static/js/main.77838189.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.c84fdbf1.js",
+    "runtime-main.js.map": "/static/js/runtime-main.c84fdbf1.js.map",
+    "static/css/2.80666451.chunk.css": "/static/css/2.80666451.chunk.css",
+    "static/js/2.f842214f.chunk.js": "/static/js/2.f842214f.chunk.js",
+    "static/js/2.f842214f.chunk.js.map": "/static/js/2.f842214f.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c4ebb970fbd97e31f36d449df0302a31.js": "/precache-manifest.c4ebb970fbd97e31f36d449df0302a31.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.80666451.chunk.css.map": "/static/css/2.80666451.chunk.css.map",
+    "static/css/main.a1dfdd8f.chunk.css.map": "/static/css/main.a1dfdd8f.chunk.css.map",
+    "static/js/2.f842214f.chunk.js.LICENSE": "/static/js/2.f842214f.chunk.js.LICENSE",
+    "static/media/Atlas-V_2.jpg": "/static/media/Atlas-V_2.5bff2b72.jpg",
+    "static/media/index.css": "/static/media/titillium-web-latin-900.c0d751f2.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c84fdbf1.js",
+    "static/css/2.80666451.chunk.css",
+    "static/js/2.f842214f.chunk.js",
+    "static/css/main.a1dfdd8f.chunk.css",
+    "static/js/main.77838189.chunk.js"
+  ]
+}
