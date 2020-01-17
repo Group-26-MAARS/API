@@ -1,7 +1,8 @@
 const express = require('express');
+const Equipment = require('../models/equipment');
+const { uploadToImgur, generateQrCode } = require('../middleware/qrCode');
 
 const router = express.Router();
-const Equipment = require('../models/equipment');
 
 router.get('/', (req, res) => {
   Equipment.find({}, (err, equipment) => {
@@ -13,11 +14,15 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/new', (req, res) => {
+router.post('/new', async (req, res) => {
   const { ID, dateOfLastService } = req.body;
+
+  const qrCode = await (uploadToImgur(generateQrCode(req.body.ID)));
+
   const newEquipment = new Equipment({
     ID,
     dateOfLastService,
+    qrCode,
   });
 
   newEquipment.save((err, product) => {
@@ -40,12 +45,5 @@ router.get('/:id', (req, res) => {
     return res.status(200).json(doc);
   });
 });
-
-
-// router.post('/:id/update', (req, res) => {
-//   Equipment.findOneAndUpdate({ ID: req.params.ID }, (req, res) => {
-
-//   });
-//   bhk});
 
 module.exports = router;
