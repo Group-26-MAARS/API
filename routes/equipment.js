@@ -43,13 +43,8 @@ router.get('/', (req, res) => {
   });
 });
 
-/**
- * Creates an equipment object
- * @param {Equipment} req.body JSON representing the Equipment
- * @return 200 with the new object
- * @throws 500 if the insert fails
- */
-router.post('/new', async (req, res) => {
+
+const createNewEquipment = async (req, res) => {
   const { dateOfLastService } = req.body;
   const newEquipment = new Equipment({
     dateOfLastService,
@@ -65,7 +60,17 @@ router.post('/new', async (req, res) => {
 
     return res.status(200).json(product);
   });
-});
+};
+
+/**
+ * Creates an equipment object
+ * @param {Equipment} req.body JSON representing the Equipment
+ * @return 200 with the new object
+ * @throws 500 if the insert fails
+ */
+router.post('/new', createNewEquipment);
+router.put('/new', createNewEquipment);
+
 
 /**
  * Creates an equipment object
