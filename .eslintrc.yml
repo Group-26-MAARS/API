@@ -9,4 +9,4 @@ globals:
   SharedArrayBuffer: readonly
 parserOptions:
   ecmaVersion: 2018
-rules: { import/no-unresolved: off }
+rules: { import/no-unresolved: off, no-underscore-dangle: off }

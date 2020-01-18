@@ -50,15 +50,13 @@ router.get('/', (req, res) => {
  * @throws 500 if the insert fails
  */
 router.post('/new', async (req, res) => {
-  const { ID, dateOfLastService } = req.body;
-
-  const qrCode = await (uploadToImgur(generateQrCode(req.body.ID)));
-
+  const { dateOfLastService } = req.body;
   const newEquipment = new Equipment({
-    ID,
     dateOfLastService,
-    qrCode,
   });
+
+  const qrCode = await (uploadToImgur(generateQrCode(newEquipment._id)));
+  newEquipment.qrCode = qrCode;
 
   newEquipment.save((err, product) => {
     if (err) {
