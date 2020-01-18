@@ -75,7 +75,7 @@ router.post('/new', async (req, res) => {
  * @throws 500 if the find fails
  */
 router.get('/:id', (req, res) => {
-  Equipment.findOne({ ID: req.params.ID }, (err, doc) => {
+  Equipment.findOne({ _id: req.params.id }, (err, doc) => {
     if (err) {
       return res.status(500).json(err);
     }
