@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "0a632b08-8840-4fc4-aa1f-94db7f4e04ce",
+		"name": "MAARS API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Equipment",
+			"item": [
+				{
+					"name": "Add New Equipment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "754d5ed3-e29e-4a95-994b-07797c42a285",
+								"exec": [
+									"const json = pm.response.json();",
+									"pm.environment.set(\"CURRENT_DATE\", new Date().toISOString());",
+									"pm.environment.set(\"ID_OF_EQUIP_TO_UPDATE\", json[\"_id\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "dateOfLastService",
+									"value": "04/20/1969",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://maars-api.herokuapp.com/equipment/new",
+							"protocol": "https",
+							"host": [
+								"maars-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"equipment",
+								"new"
+							]
+						},
+						"description": "Testing the functionality of adding new equipment to DB"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Equipment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://maars-api.herokuapp.com/equipment/",
+							"protocol": "https",
+							"host": [
+								"maars-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"equipment",
+								""
+							]
+						},
+						"description": "Tests getting all equipment"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Equipment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ae1e7f16-64f1-4f7f-88bb-128a0dbd0c30",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "dateOfLastService",
+									"value": "{{CURRENT_DATE}}",
+									"type": "text"
+								},
+								{
+									"key": "_id",
+									"value": "{{ID_OF_EQUIP_TO_UPDATE}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://maars-api.herokuapp.com/equipment/update",
+							"protocol": "https",
+							"host": [
+								"maars-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"equipment",
+								"update"
+							]
+						},
+						"description": "Tests changing dateOfLastService from whatever date to the current date"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
