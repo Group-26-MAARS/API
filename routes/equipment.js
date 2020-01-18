@@ -46,4 +46,17 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.post('/update', (req, res) => {
+  const { ID, dateOfLastService } = req.body;
+  const updated = {};
+
+  if (dateOfLastService) { updated.dateOfLastService = dateOfLastService; }
+
+  Equipment.findOneAndUpdate({ ID }, updated, { new: true }, (err, doc) => {
+    if (err) return res.status(500).json(err);
+
+    return res.status(200).json(doc);
+  });
+});
+
 module.exports = router;
