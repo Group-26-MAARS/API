@@ -25,7 +25,7 @@
 						}
 					],
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -45,13 +45,12 @@
 							]
 						},
 						"url": {
-							"raw": "https://maars-api.herokuapp.com/equipment/new",
-							"protocol": "https",
+							"raw": "http://localhost:3000/equipment/new",
+							"protocol": "http",
 							"host": [
-								"maars-api",
-								"herokuapp",
-								"com"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"equipment",
 								"new"
@@ -136,6 +135,153 @@
 							]
 						},
 						"description": "Tests changing dateOfLastService from whatever date to the current date"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://maars-api.herokuapp.com/users",
+							"protocol": "https",
+							"host": [
+								"maars-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e32d0bc2-0bb7-4036-bd34-e6b6cb1c8970",
+								"exec": [
+									"const json = pm.response.json();",
+									"pm.environment.set(\"TOKEN\", json[\"token\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "a@d",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://maars-api.herokuapp.com/login",
+							"protocol": "https",
+							"host": [
+								"maars-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "newemail@domain.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "newuser",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://maars-api.herokuapp.com/signup",
+							"protocol": "https",
+							"host": [
+								"maars-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"signup"
+							]
+						}
 					},
 					"response": []
 				}
