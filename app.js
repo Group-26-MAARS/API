@@ -4,8 +4,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const passport = require('passport');
 
 require('dotenv').config();
+require('./middleware/auth');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -23,7 +25,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// We plugin our jwt strategy as a middleware so only verified users can access these routes.
+// passReqToCallback: https://stackoverflow.com/a/55920735
+app.use('/users', passport.authenticate('jwt', { session: false, passReqToCallback: true }), usersRouter);
+
 app.use('/equipment', equipmentRouter);
 
 module.exports = app;
