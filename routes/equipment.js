@@ -45,9 +45,9 @@ router.get('/', (req, res) => {
 
 
 const createNewEquipment = async (req, res) => {
-  const { dateOfLastService } = req.body;
+  const { _id } = req.body;
   const newEquipment = new Equipment({
-    dateOfLastService,
+    _id,
   });
 
   const qrCode = await (uploadToImgur(generateQrCode(newEquipment._id)));
