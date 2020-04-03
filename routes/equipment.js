@@ -62,6 +62,21 @@ const createNewEquipment = async (req, res) => {
   });
 };
 
+const updateEquipment = async (req, res) => {
+  const { _id, dateOfLastService } = req.body;
+  const updated = {};
+
+  if (dateOfLastService) { updated.dateOfLastService = dateOfLastService; }
+
+  Equipment.findOneAndUpdate({ _id }, updated, { new: true }, (err, doc) => {
+    if (err) return res.status(500).json(err);
+
+    if (!doc) return res.status(404).json({ message: `Equipment with ID: ${req.body.ID} was not found` });
+
+    return res.status(200).json(doc);
+  });
+};
+
 /**
  * Creates an equipment object
  * @param {Equipment} req.body JSON representing the Equipment
@@ -98,19 +113,7 @@ router.get('/:id', (req, res) => {
  * @throws 404 if the doc with `ID` is not found
  * @throws 500 if the update fails
  */
-router.post('/update', (req, res) => {
-  const { _id, dateOfLastService } = req.body;
-  const updated = {};
-
-  if (dateOfLastService) { updated.dateOfLastService = dateOfLastService; }
-
-  Equipment.findOneAndUpdate({ _id }, updated, { new: true }, (err, doc) => {
-    if (err) return res.status(500).json(err);
-
-    if (!doc) return res.status(404).json({ message: `Equipment with ID: ${req.body.ID} was not found` });
-
-    return res.status(200).json(doc);
-  });
-});
+router.post('/update', updateEquipment);
+router.put('/update', updateEquipment);
 
 module.exports = router;
