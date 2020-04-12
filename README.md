@@ -10,6 +10,7 @@ A REST API made with Expressjs
 | **PUT**  | `/equipment/new`    | Creates an equipment object, autogenerating ID and QR code, same as above | 200 with the new object         | throws 500 if the insert fails                                               |
 | **GET**  | `/equipment/:id`    | Gets equipment object represented by `id`                                 | 200 with the object             | 404 if object not found, throws 500 if the find fails                        |
 | **POST** | `/equipment/update` | Updates an equipment object                                               | 200 with the updated object     | throws 404 if the doc with `ID` is not found, throws 500 if the update fails |
+| **POST** | `/equipment/delete` | Deletes an equipment object                                               | 200 with happy message| throws 500 if the delete fails |
 
 
 **Sample JSON response from /equipment/new**
