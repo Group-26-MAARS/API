@@ -116,4 +116,23 @@ router.get('/:id', (req, res) => {
 router.post('/update', updateEquipment);
 router.put('/update', updateEquipment);
 
+
+const deleteEquipment = async (req, res) => {
+  for (const ele in req.body.ids) {
+    Equipment.deleteOne({ _id: ele });
+  }
+
+  res.status(200).json();
+};
+
+
+/**
+ * Deletes an equipment object
+ * @param {Equipment} req.body JSON representing the updated Equipment
+ * @return 200 with the updated object
+ */
+router.post('/delete', deleteEquipment);
+router.put('/delete', deleteEquipment);
+
+
 module.exports = router;
