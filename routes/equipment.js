@@ -118,11 +118,11 @@ router.put('/update', updateEquipment);
 
 
 const deleteEquipment = async (req, res) => {
-  for (const ele in req.body.ids) {
-    Equipment.deleteOne({ _id: ele });
-  }
-
-  res.status(200).json();
+  const _id = Number(req.body.id);
+  Equipment.deleteOne({ _id }, (err) => {
+    if (err) res.status(500).json(err);
+  });
+  res.status(200).json({ msg: `deleted ${req.body.id}` });
 };
 
 
