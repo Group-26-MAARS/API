@@ -71,7 +71,7 @@ const updateEquipment = async (req, res) => {
   Equipment.findOneAndUpdate({ _id }, updated, { new: true }, (err, doc) => {
     if (err) return res.status(500).json(err);
 
-    if (!doc) return res.status(404).json({ message: `Equipment with ID: ${req.body.ID} was not found` });
+    if (!doc) return res.status(404).json({ message: `Equipment with ID: ${_id} was not found` });
 
     return res.status(200).json(doc);
   });
