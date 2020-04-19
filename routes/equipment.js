@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
       return res.status(500).json(err);
     }
 
-    return res.status(200).json(equipment);
+    res.status(200).json(equipment);
   });
 });
 
@@ -58,7 +58,7 @@ const createNewEquipment = async (req, res) => {
       return res.status(500).json(err);
     }
 
-    return res.status(200).json(product);
+    res.status(200).json(product);
   });
 };
 
@@ -73,7 +73,7 @@ const updateEquipment = async (req, res) => {
 
     if (!doc) return res.status(404).json({ message: `Equipment with ID: ${_id} was not found` });
 
-    return res.status(200).json(doc);
+    res.status(200).json(doc);
   });
 };
 
@@ -102,7 +102,7 @@ router.get('/:id', (req, res) => {
 
     if (!doc) return res.status(404).json({ message: 'No results found.' });
 
-    return res.status(200).json(doc);
+    res.status(200).json(doc);
   });
 });
 
@@ -123,8 +123,8 @@ const deleteEquipment = async (req, res) => {
     if (err) {
       return res.status(500).json(err);
     }
+    res.status(200).json({ msg: `deleted ${req.body.id}` });
   });
-  return res.status(200).json({ msg: `deleted ${req.body.id}` });
 };
 
 
